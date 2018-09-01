@@ -39,9 +39,9 @@ if(!empty($_POST['carro'])) {
 		$lista = $carros->getCarros();
 
 		foreach($lista as $carro):
-			?>
+		?>
 			<option value="<?php echo $carro['id']; ?>"><?php echo $carro['nome']; ?></option>
-			<?php
+		<?php
 		endforeach;
 		?>
 	</select><br/><br/>
