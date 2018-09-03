@@ -17,18 +17,24 @@
         <tr>
             <?php for($q=0;$q<7;$q++):?>
                 <?php
-                $w = date('Y-m-d', strtotime(($q+($l*7)).' days', strtotime(
-                    $data_inicio)) );
+                $t = strtotime(($q+($l*7)).' days', strtotime($data_inicio));
+                $w = date('Y-m-d', $t);
                 ?>
-                <td>
-                <?php
-                echo $w."<br/><br/>";
-
+                <td><?php   
+                echo date('d', $t)."<br/><br/>";   
+                  
+                $w = strtotime($w);
                 foreach($lista as $item){
-                    
+                    $dr_inicio = strtotime($item['data_inicio']);
+                    $dr_fim = strtotime($item['data_fim']);
+
+                    if( $w >= $dr_inicio && $w <= $dr_fim ){
+                        echo $item['pessoa']." (".$item['id_carro'].") <br/>";
+                    }
+
                 }
                 ?></td>
-            <?php endfor;?>
+            <?php endfor; ?>
         </tr>
     <?php endfor;?>
 
