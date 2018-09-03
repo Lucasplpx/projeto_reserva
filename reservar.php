@@ -1,7 +1,7 @@
 <?php
-require 'connection.php';
-require 'class/Carros.php';
-require 'class/Reservas.php';
+require 'config.php';
+require 'classes/carros.class.php';
+require 'classes/reservas.class.php';
 
 $reservas = new Reservas($pdo);
 $carros = new Carros($pdo);
@@ -17,7 +17,7 @@ if(!empty($_POST['carro'])) {
 
 	if($reservas->verificarDisponibilidade($carro, $data_inicio, $data_fim)) {
 		$reservas->reservar($carro, $data_inicio, $data_fim, $pessoa);
-		header("Location: index1.php");
+		header("Location: index.php");
 		exit;
 	} else {
 		echo "Este carro já está reservado neste período.";
@@ -39,9 +39,9 @@ if(!empty($_POST['carro'])) {
 		$lista = $carros->getCarros();
 
 		foreach($lista as $carro):
-		?>
+			?>
 			<option value="<?php echo $carro['id']; ?>"><?php echo $carro['nome']; ?></option>
-		<?php
+			<?php
 		endforeach;
 		?>
 	</select><br/><br/>
